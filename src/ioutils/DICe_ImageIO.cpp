@@ -49,6 +49,8 @@
 #if DICE_ENABLE_NETCDF
   #include <DICe_NetCDF.h>
 #endif
+#include <opencv2/calib3d/calib3d.hpp>
+
 
 namespace DICe{
 namespace utils{
