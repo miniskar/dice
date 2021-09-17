@@ -4,16 +4,17 @@ EXTRA_ARGS=$@
 
 rm -f CMakeCache.txt
 rm -rf CMakeFiles
-
+SPACK=/noback/nqx/spack/var/spack/environments/dice/.spack-env/view
 cmake \
  -D CMAKE_BUILD_TYPE=RELEASE \
- -D DICE_TRILINOS_DIR=<path_to_trilinos_install> \
- -D CMAKE_INSTALL_PREFIX:FILEPATH=<path_to_intended_dice_install> \
+ -D DICE_TRILINOS_DIR=$SPACK \
+ -D CMAKE_INSTALL_PREFIX:FILEPATH=$PWD/../install \
  -D CMAKE_VERBOSE_MAKEFILE:BOOL=ON \
  -D DICE_DEBUG_MSG:BOOL=OFF \
  -D DICE_USE_DOUBLE:BOOL=OFF \
- -D TIFF_DIR:FILE_PATH=<path_to_libtiff> \
- -D JPEG_DIR:FILE_PATH=<optional_path_to_libjpeg> \
- -D PNG_DIR:FILE_PATH=<optional_path_to_libpng> \
+ -D TIFF_DIR:FILE_PATH=$SPACK \
+ -D JPEG_DIR:FILE_PATH=$SPACK \
+ -D PNG_DIR:FILE_PATH=$SPACK \
  -D CMAKE_CXX_FLAGS:STRING="-Wall" \
+ -DBUILD_SHARED_LIBS=ON \
  $EXTRA_ARGS ../
