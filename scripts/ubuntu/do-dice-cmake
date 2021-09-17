@@ -2,11 +2,13 @@
 
 rm -f CMakeCache.txt
 rm -rf CMakeFiles
+EXTRA_ARGS=$@
 
+SPACK=/noback/nqx/spack/var/spack/environments/dice/.spack-env/view
 cmake \
     -D CMAKE_BUILD_TYPE:STRING=RELEASE \
-    -D DICE_TRILINOS_DIR:FILEPATH=<path>/trilinos-12.4.2-Source/build/install \
-    -D CMAKE_INSTALL_PREFIX:FILEPATH=<path>/DICe/build/install \
+    -D DICE_TRILINOS_DIR=$SPACK \
+    -D CMAKE_INSTALL_PREFIX:FILEPATH=$PWD/../install_ubuntu \
     -D CMAKE_VERBOSE_MAKEFILE:BOOL=OFF \
     -D CMAKE_CXX_FLAGS:STRING="-Wno-deprecated-declarations -Wno-format-security" \
     -D DICE_DEBUG_MSG:BOOL=ON \
@@ -14,5 +16,6 @@ cmake \
     -D DICE_USE_TPETRA:BOOL=OFF \
     -D DICE_ENABLE_MANYCORE:BOOL=OFF \
     -D DICE_ENABLE_GLOBAL:BOOL=ON \
-    -D OpenCV_DIR:PATH=<path>/opencv-3.2.0/build/install \
-    ../
+    -D OpenCV_DIR:PATH=$SPACK \
+    -DBUILD_SHARED_LIBS=ON \
+    $EXTRA_ARGS ../

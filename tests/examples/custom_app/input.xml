@@ -1,4 +1,5 @@
 <ParameterList>
+  <Parameter name="output_folder" type="string" value="out" />
   <Parameter name="image_folder" type="string" value="" />
   <Parameter name="reference_image" type="string" value="ref.tif" />
   <ParameterList name="deformed_images">
